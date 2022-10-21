@@ -78,16 +78,7 @@ app.get('/api/v1/pokemons', (req, res) => {
   })
 
 app.get('/api/v1/pokemon/:id', (req, res) => {
-deletedPokemon.find({id: req.params.id }).then(doc => {
-    if (doc == []) {
-        console.log("beep")
-    }
-    else {
-    console.log(doc)
-    res.send({msg: "this pokemon is deleted"})
-    }
-}).catch(err => {
-    pokemonModel.find({ id: req.params.id})
+pokemonModel.find({ id: req.params.id})
 .then(doc => {
     getOne(req.params.id, res, doc)
    /*  if (doc === []) {
@@ -102,8 +93,6 @@ deletedPokemon.find({id: req.params.id }).then(doc => {
     console.error(err)
     res.json({ msg: "db reading .. err.  Check with server devs" })
 })
-})
-
 })
 
 app.get('/api/v1/pokemonImage/:id', (req, res) => {
